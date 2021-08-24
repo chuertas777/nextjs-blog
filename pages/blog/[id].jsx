@@ -16,7 +16,7 @@ export default function firstpost({ data }) {
 }
 export async function getStaticPaths() {
     try {
-      const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
       const data = await res.json();
       const paths = data.map((post) => ({ params: { id: post.id.toString() } }));
       
@@ -31,10 +31,10 @@ export async function getStaticPaths() {
   
   export async function getStaticProps({ params }) {
     try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts" + params.id);
+      const res = await fetch("https://jsonplaceholder.typicode.com/posts/" + params.id);
       const data = await res.json();
       
-      return { props: { data} };
+      return { props: { data } };
     } catch (error) {
       console.log(error);
     }
