@@ -8,18 +8,16 @@ export default function index({ data }) {
            description="Descripción de equipos"
         >
             <h1>Lista Blog</h1>
-            {data.map(({ id, placa, modelo, serial, descripcion }) => (
+            {data.map(({ id, title, body }) => (
                     <div key={id}>
                         <h3>
                             <Link href={`/blog/${id}`}>
                                 <a>
-                                    {id} - {placa}
+                                    {id} - {title}
                                 </a>
                             </Link>
                         </h3>
-                        <p>{modelo}</p>
-                        <p>{serial}</p>
-                        <p>{descripcion}</p>
+                        <p>{body}</p>
                     </div>
             ))} 
         </Layout>
@@ -29,7 +27,7 @@ export default function index({ data }) {
 
 export async function getStaticProps() {
     try {
-      const res = await fetch('http://localhost:1337/equipos');
+      const res = await fetch('https://jsonplaceholder.typicode.com/posts');
       const data = await res.json();
       return {
         props: {
